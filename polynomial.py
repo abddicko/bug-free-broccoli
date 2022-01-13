@@ -4,17 +4,29 @@ import matplotlib.pyplot as plt  # type:ignore
 
 class Poly2:
     """ Classe permettant de representer un polynôme de degré 2."""
+    poly = {a*x**2+b*x+c==0}
 
     def __init__(self, *coeffs):
         """ Méthode constructeur qui prend en paramètre, les coefficients du polynôme"""
+        self.coeffs = liste_coeffs
         pass
 
     def __add__(self, other):
         """Addition 2 polynômes et qui renvoi du nouveau polynôme"""
+        z = Poly([0, 2, 3, 1])
+        e = Poly([0, 0, 0, 0, 0, 0, 1])
+        r = z + e
+        print(r)
+        assert r.coeffs == [0, 2, 3, 1, 0, 0, 1]
         pass
 
     def __sub__(self, other):
         """Soustraction de 2 polynômes et renvoi du nouveau polynôme"""
+        z = Poly([0, 2, 3, 1])
+        e = Poly([0, 0, 0, 0, 0, 0, 1])
+        r = z - e
+        print(r)
+        assert r.coeffs == [0, 2, 3, 1, 0, 0, 1]
         pass
 
     def __repr__(self):
@@ -30,6 +42,16 @@ class Poly2:
 
     def solve(self):
         """ Méthode qui renvoie les solutions si elles existent."""
+        p=Rationnel(2,3)
+        q=Rationnel(3,4)
+        print ("z=",z)
+        print ("e=",e)
+        print("z+e=",z+e)
+        print("z-e=",z-e)
+        print("z*z=",z*z)
+        print("z/e=",z/e)
+        assert (z/e).z==8
+        assert (z*e).e==12
         pass
 
     def __val(self, x):
@@ -42,6 +64,18 @@ class Poly2:
 
     def draw(self, x_points=None):
         """ Méthode qui trace la courbe, voir fichier png."""
+    x = np.linspace(-2,2,100)
+    y = np.exp(x)
+    plt.title('Courbe de P1')
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.plot(x, y, alpha = 0.4,
+    color ='green', linestyle ='dashed',
+    linewidth = 2)
+    plt.grid(alpha =.6, linestyle ='-')
+    plt.plot(x,y, 'y', label='f(x)=e^x')
+    plt.legend(loc='upper left')
+    plt.show()
         pass
 
 
