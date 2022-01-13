@@ -4,7 +4,6 @@ import matplotlib.pyplot as plt  # type:ignore
 
 class Poly2:
     """ Classe permettant de representer un polynôme de degré 2."""
-    poly = {a*x**2+b*x+c==0}
 
     def __init__(self, *coeffs):
         """ Méthode constructeur qui prend en paramètre, les coefficients du polynôme"""
@@ -13,46 +12,62 @@ class Poly2:
 
     def __add__(self, other):
         """Addition 2 polynômes et qui renvoi du nouveau polynôme"""
-        z = Poly([0, 2, 3, 1])
-        e = Poly([0, 0, 0, 0, 0, 0, 1])
-        r = z + e
-        print(r)
-        assert r.coeffs == [0, 2, 3, 1, 0, 0, 1]
-        pass
+        assert type(other) is Poly2
+        if self.coeffs[0] != 0:
+            a = self.coeffs[0] + other.coeffs[0]
+            b = self.coeffs[1] + other.coeffs[1]
+            c = self.coeffs[2] + other.coeffs[2]
+            print(f"{a}x² + {b}x + {c}")
+            #return (self.coeffs + other.coeffs)
+        else:
+            print(f"{self.coeffs[0]} ne peut pas être égal à 0")
+
 
     def __sub__(self, other):
         """Soustraction de 2 polynômes et renvoi du nouveau polynôme"""
-        z = Poly([0, 2, 3, 1])
-        e = Poly([0, 0, 0, 0, 0, 0, 1])
-        r = z - e
-        print(r)
-        assert r.coeffs == [0, 2, 3, 1, 0, 0, 1]
-        pass
-
-    def __repr__(self):
-        msg = 'Poly2(' + ', '.join([str(c) for c in sorted(self.coeffs.values())]) + ')'
-        return msg
+        assert type(other) is Poly2
+        if self.coeffs[0] != 0:
+            a = self.coeffs[0] - other.coeffs[0]
+            b = self.coeffs[1] - other.coeffs[1]
+            c = self.coeffs[2] - other.coeffs[2]
+            if a == 0:
+                print(0)
+            else:
+                print(f"{a}x² + {b}x + {c}")
+        else:
+            print(f"{self.coeffs[0]} ne peut pas être égal à 0")
 
     def __str__(self):
         """Méthode qui personalise la chaîne de caractère affichée par la fonction print
         Si: p1 = Poly(3, -4, 2)
         Alors print(p1) affiche: '2X^2 - 4X + 3'
         """
-        pass
+        if self.coeffs[1] >= 0 & self.coeffs[2] >= 0:
+            polytype = f"{self.coeffs[0]}x² + {self.coeffs[1]}x + {self.coeffs[2]}"
+        elif self.coeffs[1] < 0 & self.coeffs[2] >= 0:
+            polytype = f"{self.coeffs[0]}x² - {abs(self.coeffs[1])}x + {self.coeffs[2]}"
+        elif self.coeffs[1] < 0 & self.coeffs[2] < 0:
+            polytype = f"{self.coeffs[0]}x² - {abs(self.coeffs[1])}x - {abs(self.coeffs[2])}"
+        elif self.coeffs[1] <= 0 & self.coeffs[2] < 0:
+            polytype = f"{self.coeffs[0]}x² + {self.coeffs[1]}x - {abs(self.coeffs[2])}"
+            
+        return polytype
 
     def solve(self):
         """ Méthode qui renvoie les solutions si elles existent."""
-        p=Rationnel(2,3)
-        q=Rationnel(3,4)
-        print ("z=",z)
-        print ("e=",e)
-        print("z+e=",z+e)
-        print("z-e=",z-e)
-        print("z*z=",z*z)
-        print("z/e=",z/e)
-        assert (z/e).z==8
-        assert (z*e).e==12
-        pass
+        if self.coeffs[0] != 0:
+            a = self.coeffs[0]
+            b = self.coeffs[1]
+            c = self.coeffs[2]
+            
+            # calculate the discriminant
+            d = (b**2) - (4*a*c)
+            # find two solutions
+            sol2 = (-b - sqrt(d))/(2*a)
+            sol1 = (-b + sqrt(d))/(2*a)
+            
+            print(f"(({resultat1}), ({resultat2}))")
+            return resultat2, resultat1
 
     def __val(self, x):
         """ Méthode qui calcule et renvoie la valeur de y en fonction de x.
