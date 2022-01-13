@@ -66,8 +66,9 @@ class Poly2:
             sol2 = (-b - sqrt(d))/(2*a)
             sol1 = (-b + sqrt(d))/(2*a)
             
-            print(f"(({resultat1}), ({resultat2}))")
-            return resultat2, resultat1
+            resultat = ((resultat1), (resultat2))
+            print(f"{resultat}")
+            return resultat
 
     def __val(self, x):
         """ Méthode qui calcule et renvoie la valeur de y en fonction de x.
