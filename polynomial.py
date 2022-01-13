@@ -91,7 +91,6 @@ class Poly2:
     plt.plot(x,y, 'y', label='f(x)=e^x')
     plt.legend(loc='upper left')
     plt.show()
-        pass
 
 
 if __name__ == "__main__":
